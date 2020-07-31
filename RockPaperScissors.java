@@ -8,14 +8,27 @@ class RockPaperScissors
    public String getUserChoice  (){
       Scanner in = new Scanner(System.in);
       String user = "";
-      
-      try{
-         System.out.println("Please enter Rock, Paper, or Scissors.");
-         user = in.nextLine();
-      }
-      catch(InputMismatchException e){
-         System.out.println("Invalid input, please try again.");
-      }
+      String userUpper = "";
+      boolean error = false;
+      do{
+         try{
+            error = false;
+            System.out.println("Please enter Rock, Paper, or Scissors.");
+            user = in.nextLine();
+            userUpper = user.toUpperCase();
+            
+            if (userUpper.equals ("ROCK") || userUpper.equals ("PAPER") || userUpper.equals ("SCISSORS")){
+               error = false;
+            }   
+            else{
+               error = true;
+            }
+         }
+         catch(InputMismatchException e){
+         error = true;
+            System.out.println("Invalid input, please try again.");
+         }
+      }while(error = true);   
       return user;
    }
    public String getCPUChoice (){
@@ -28,13 +41,13 @@ class RockPaperScissors
       switch (choice)
       {
          case 1:
-            cpu = "Rock";
+            cpu = "ROCK";
             break;
          case 2:
-            cpu = "Paper";
+            cpu = "PAPER";
             break;
          case 3:
-            cpu = "Scissors";
+            cpu = "SCISSORS";
             break;
       }
       return cpu;
@@ -46,16 +59,16 @@ class RockPaperScissors
    //0 tie, 1 user win, 2 cpu win, -1 error
    switch (user)
    {
-      case "Rock":
+      case "ROCK":
          switch (cpu)
          {
-            case "Rock":
+            case "ROCK":
                winner = 0;
                break;
-            case "Paper":
+            case "PAPER":
                winner = 2;
                break;
-            case "Scissors":
+            case "SCISSORS":
                winner = 1;
                break;
             default:
@@ -64,16 +77,16 @@ class RockPaperScissors
          }
          break;
  //0 tie, 1 user win, 2 cpu win, -1 error
-      case "Paper":
+      case "PAPER":
          switch (cpu)
          {
-            case "Rock":
+            case "ROCK":
                winner = 1;
                break;
-            case "Paper":
+            case "PAPER":
                winner = 0;
                break;
-            case "Scissors":
+            case "SCISSORS":
                winner = 2;
                break;
             default:
@@ -83,16 +96,16 @@ class RockPaperScissors
          }
          break;
  //0 tie, 1 user win, 2 cpu win, -1 error
-      case "Scissors":
+      case "SCISSORS":
          switch (cpu)
          {
-            case "Rock":
+            case "ROCK":
                winner = 2;
                break;
-            case "Paper":
+            case "PAPER":
                winner = 1;
                break;
-            case "Scissors":
+            case "SCISSORS":
                winner = 0;
                break;
             default:
